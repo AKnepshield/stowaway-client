@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 export const NavBar = () => {
@@ -21,6 +21,14 @@ export const NavBar = () => {
               to={"/records"}
             >
               Records
+            </NavLink>
+          </li>
+          <li className="navbar_item">
+            <NavLink
+              className="text-left underline text-blue-600 hover:text-purple-700"
+              to={"/my-records"}
+            >
+              My Records!
             </NavLink>
           </li>
           <li className="navbar__item">

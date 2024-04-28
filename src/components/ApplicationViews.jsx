@@ -19,7 +19,9 @@ export const ApplicationViews = () => {
             <Route index element={<RecordList />} />
             <Route path=":id" element={<RecordDetails />} />
             <Route path="new" element={<RecordForm />} />
+            <Route path=":id/edit" element={<RecordForm />} />
           </Route>
+          <Route path="/my-records" element={<RecordList />} />
         </Route>
       </Routes>
     </BrowserRouter>

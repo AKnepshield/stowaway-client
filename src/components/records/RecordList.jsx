@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react";
-import { getRecords } from "../services/recordService.jsx";
-import { Link } from "react-router-dom";
+import { getRecords, getRecordsByUserId } from "../services/recordService.jsx";
+import { Link, useLocation } from "react-router-dom";
+import { getCurrentUser } from "../services/userService.jsx";
 
 export const RecordList = () => {
   const [records, setRecords] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
-    getRecords().then(setRecords);
+    getCurrentUser().then((user) => {
+      if (location.pathname === "/my-records") {
+        getRecordsByUserId(user.id).then(setRecords);
+      } else {
+        getRecords().then(setRecords);
+      }
+    });
   }, []);
 
   return (
