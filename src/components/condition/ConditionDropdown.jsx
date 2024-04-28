@@ -5,6 +5,7 @@ export const ConditionDropdown = ({ formData, setFormData }) => {
   const [conditions, setConditions] = useState([]);
 
   useEffect(() => {
+    console.log(formData);
     getConditions().then(setConditions);
   }, [formData]);
 
@@ -21,7 +22,7 @@ export const ConditionDropdown = ({ formData, setFormData }) => {
       <select
         id="condition"
         name="condition"
-        value={formData.conditions}
+        value={formData.condition || ""}
         onChange={handleConditionChange}
       >
         <option value="">Select condition</option>

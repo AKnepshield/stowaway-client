@@ -3,22 +3,17 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getRecord } from "../services/recordService.jsx";
 import { getCurrentUser } from "../services/userService.jsx";
 import { deleteRecord } from "../services/recordService.jsx";
-// import { getCondition } from "../services/conditionService.jsx";
+import { Link } from "react-router-dom";
 
 export const RecordDetails = () => {
   const [record, setRecord] = useState({});
   const [currentUser, setCurrentUser] = useState({});
-  //   const [condition, setCondition] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     getRecord(id).then(setRecord);
   }, [id]);
-
-  //   useEffect(() => {
-  //     getCondition(id).then(setCondition);
-  //   }, []);
 
   useEffect(() => {
     getCurrentUser().then(setCurrentUser);
@@ -59,29 +54,13 @@ export const RecordDetails = () => {
           <div>
             <strong>Condition:</strong> {record.condition?.label}
           </div>
-          {/* <div>
-            <strong>Condition:</strong>
-            <select
-              value={condition}
-              onChange={(e) => setCondition(e.target.value)}
-            >
-              <option value="">Select condition</option>
-              {condition &&
-                condition.map((item) => (
-                  <option key={item.value} value={item.value}>
-                    {item.label}
-                  </option>
-                ))}
-            </select>
-          </div> */}
           {currentUser?.id === record.user?.id ? (
             <div className="mt-4">
               <button
                 type="button"
-                className="bg-green-500 text-yellow-500 px-4 py-2 rounded shadow-md mr-4"
-                onClick={() => console.log("Edit clicked")}
+                className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-600"
               >
-                Edit Record
+                <Link to={`/records/${record.id}/edit`}>Edit Record</Link>
               </button>
               <button
                 type="button"

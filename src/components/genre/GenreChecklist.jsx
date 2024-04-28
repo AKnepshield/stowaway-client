@@ -1,44 +1,40 @@
 import { useEffect, useState } from "react";
-import { getGenres } from "../services/categoryService.jsx";
+import { getGenres } from "../services/genreService.jsx";
 
-export const CategoryCheckbox = ({ formData, setFormData }) => {
+export const GenreChecklist = ({ formData, setFormData }) => {
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
     getGenres().then(setGenres);
   }, [formData]);
 
-  //   const handleGenreChange = (genreId) => {
-  //     const isSelected = formData.genres.includes(genreId);
-  //   };
-
   const handleGenreChange = (genreId) => {
-    const isSelected = formData.categories.includes(genreId);
+    const isSelected = formData.genres.includes(genreId);
     if (isSelected) {
       setFormData({
         ...formData,
-        categories: formData.categories.filter((id) => id !== genreId),
+        genres: formData.genres.filter((id) => id !== genreId),
       });
     } else {
       setFormData({
         ...formData,
-        categories: [...formData.categories, genreId],
+        genres: [...formData.genres, genreId],
       });
     }
   };
 
   return (
     <div>
-      <label>Categories:</label>
+      <label>Genres:</label>
       {genres.map((genre) => (
         <div key={genre.id}>
           <label>
             <input
               type="checkbox"
-              checked={formData.categories.includes(genre.id)}
+              checked={formData.genres.includes(genre.id)}
               onChange={() => handleGenreChange(genre.id)}
             />
-            {genre.label}
+            {genre.name}
           </label>
         </div>
       ))}

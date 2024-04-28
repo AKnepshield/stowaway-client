@@ -32,8 +32,8 @@ export const deleteRecord = (id) => {
   });
 };
 
-export const updateRecord = () => {
-  return fetch(`http://localhost:8000/records`, {
+export const updateRecord = (id, formData) => {
+  return fetch(`http://localhost:8000/records/${id}`, {
     method: "PUT",
     headers: {
       Authorization: `Token ${
@@ -41,6 +41,7 @@ export const updateRecord = () => {
       }`,
       "Content-Type": "application/json",
     },
+    body: JSON.stringify(formData),
   });
 };
 
@@ -55,4 +56,15 @@ export const createRecord = (recordObj) => {
     },
     body: JSON.stringify(recordObj),
   });
+};
+
+export const getRecordsByUserId = (id) => {
+  return fetch(`http://localhost:8000/records?user_id=${id}`, {
+    headers: {
+      Authorization: `Token ${
+        JSON.parse(localStorage.getItem("user_token")).token
+      }`,
+      "Content-Type": "application/json",
+    },
+  }).then((res) => res.json());
 };

@@ -6,15 +6,15 @@ import {
   updateRecord,
 } from "../services/recordService.jsx";
 import { ConditionDropdown } from "../condition/ConditionDropdown.jsx";
+import { GenreChecklist } from "../genre/GenreChecklist.jsx";
 
 export const RecordForm = () => {
-  // const [categories, setCategories] = useState([]);
   const [formData, setFormData] = useState({
     artist: "",
     album: "",
-    year_released: "",
+    yearReleased: "",
     condition: null,
-    image_url: "",
+    imageUrl: "",
     genres: [],
   });
 
@@ -25,8 +25,8 @@ export const RecordForm = () => {
       getRecord(id).then((record) => {
         delete record.user;
         delete record.id;
-        record.genre = record.genre.map((genre) => genre.id);
-
+        record.condition = record.condition.id;
+        record.genres = record.genres.map((genre) => genre.id);
         setFormData(record);
       });
     }
@@ -76,7 +76,7 @@ export const RecordForm = () => {
         <select
           id="year_released"
           name="year_released"
-          value={formData.year_released}
+          value={formData.yearReleased}
           onChange={handleChange}
         >
           <option value="">Select year</option>
@@ -95,13 +95,14 @@ export const RecordForm = () => {
       </div>
 
       <ConditionDropdown formData={formData} setFormData={setFormData} />
+      <GenreChecklist formData={formData} setFormData={setFormData} />
       <div>
         <label htmlFor="image_url">Image URL:</label>
         <input
           type="text"
           id="image_url"
           name="image_url"
-          value={formData.image_url}
+          value={formData.imageUrl}
           onChange={handleChange}
         />
       </div>
