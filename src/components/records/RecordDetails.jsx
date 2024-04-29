@@ -54,6 +54,15 @@ export const RecordDetails = () => {
           <div>
             <strong>Condition:</strong> {record.condition?.label}
           </div>
+          <div>
+            <strong>Genres:</strong>
+            <ul>
+              {record.genres &&
+                record.genres.map((genre) => (
+                  <li key={genre.id}>{genre.name}</li>
+                ))}
+            </ul>
+          </div>
           {currentUser?.id === record.user?.id ? (
             <div className="mt-4">
               <button
