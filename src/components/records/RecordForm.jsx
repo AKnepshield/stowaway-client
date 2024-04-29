@@ -45,7 +45,17 @@ export const RecordForm = () => {
         navigate(`/records/${id}`);
       });
     } else {
-      createRecord(formData);
+      createRecord(formData)
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error(`Failed to create record: ${response.statusText}`);
+          }
+        })
+        .then((data) => {
+          navigate(`/records/${data.id}`);
+        });
     }
   };
 
@@ -75,7 +85,7 @@ export const RecordForm = () => {
         <label htmlFor="year_released">Year Released:</label>
         <select
           id="year_released"
-          name="year_released"
+          name="yearReleased"
           value={formData.yearReleased}
           onChange={handleChange}
         >
@@ -101,7 +111,7 @@ export const RecordForm = () => {
         <input
           type="text"
           id="image_url"
-          name="image_url"
+          name="imageUrl"
           value={formData.imageUrl}
           onChange={handleChange}
         />
