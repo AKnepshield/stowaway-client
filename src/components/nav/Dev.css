@@ -1,0 +1,20 @@
+.navbar {
+  background-color: #4a5568; /* Dark gray background color */
+  padding: 10px 0; /* Padding top and bottom */
+  display: flex;
+  justify-content: space-evenly; /* Evenly spaced items */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow box */
+}
+
+.navbar__item {
+  list-style-type: none;
+}
+
+.navbar__link {
+  color: yellow; /* Yellow font color */
+  text-decoration: none; /* Remove underline */
+}
+
+.navbar__link:hover {
+  color: #f6e05e; /* Yellow font color on hover */
+}

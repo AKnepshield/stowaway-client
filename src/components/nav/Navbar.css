@@ -1,20 +1,25 @@
-.navbar {
-  background-color: #4a5568; /* Dark gray background color */
-  padding: 10px 0; /* Padding top and bottom */
-  display: flex;
-  justify-content: space-evenly; /* Evenly spaced items */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow box */
+/* .navbar-brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.navbar__item {
-  list-style-type: none;
+.btn-logout {
+  background-color: gray;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  border-radius: 0.25rem;
+  padding: 0.25rem 1rem;
+} */
+/* Define custom styles in your Navbar.css file */
+
+/* Darker background color for the dropdown menu */
+.custom-dropdown-menu {
+  background-color: #343a40;
 }
 
-.navbar__link {
-  color: yellow; /* Yellow font color */
-  text-decoration: none; /* Remove underline */
-}
-
-.navbar__link:hover {
-  color: #f6e05e; /* Yellow font color on hover */
+/* Lighten background color on hover */
+.custom-dropdown-menu .dropdown-item:hover {
+  background-color: #495057;
 }
