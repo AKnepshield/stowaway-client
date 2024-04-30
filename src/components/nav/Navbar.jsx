@@ -9,7 +9,7 @@ export const NavBar = () => {
         <>
           <li className="navbar__item">
             <NavLink
-              className="text-left underline text-blue-600 hover:text-purple-700"
+              className="text-left underline text-yellow-500 hover:text-purple-700"
               to={"/records/new"}
             >
               New Record!
@@ -17,7 +17,7 @@ export const NavBar = () => {
           </li>
           <li className="navbar__item">
             <NavLink
-              className="text-left underline text-blue-600 hover:text-purple-700"
+              className="text-left underline text-yellow-500 hover:text-purple-700"
               to={"/records"}
             >
               Records
@@ -25,7 +25,7 @@ export const NavBar = () => {
           </li>
           <li className="navbar_item">
             <NavLink
-              className="text-left underline text-blue-600 hover:text-purple-700"
+              className="text-left underline text-yellow-500 hover:text-purple-700"
               to={"/my-records"}
             >
               My Records!
@@ -33,7 +33,7 @@ export const NavBar = () => {
           </li>
           <li className="navbar__item">
             <button
-              className="underline text-blue-600 hover:text-purple-700"
+              className="underline text-yellow-500 hover:text-purple-700"
               onClick={() => {
                 localStorage.removeItem("user_token");
                 navigate("/login");
@@ -47,7 +47,7 @@ export const NavBar = () => {
         <>
           <li className="navbar__item">
             <NavLink
-              className="text-left underline text-blue-600 hover:text-purple-700"
+              className="text-left underline text-yellow-500 hover:text-purple-700"
               to={"/login"}
             >
               Login
@@ -55,7 +55,7 @@ export const NavBar = () => {
           </li>
           <li className="navbar__item">
             <NavLink
-              className="text-left underline text-blue-600 hover:text-purple-700"
+              className="text-left underline text-yellow-500 hover:text-purple-700"
               to={"/register"}
             >
               Register
