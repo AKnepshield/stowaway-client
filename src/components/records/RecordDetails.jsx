@@ -28,7 +28,9 @@ export const RecordDetails = () => {
   return (
     <>
       <div className="flex justify-center items-center">
-        <div className="w-40%">
+        {" "}
+        <div className="w-2/5">
+          {" "}
           {record.imageUrl && (
             <div className="flex justify-center">
               <img
@@ -39,7 +41,7 @@ export const RecordDetails = () => {
             </div>
           )}
         </div>
-        <div className="w-60% ml-8 text-left">
+        <div className="w-3/5 ml-8 flex flex-col items-start">
           {" "}
           <h1>{record.artist}</h1>
           <div>
@@ -63,8 +65,8 @@ export const RecordDetails = () => {
                 ))}
             </ul>
           </div>
-          {currentUser?.id === record.user?.id ? (
-            <div className="mt-4">
+          {currentUser?.id === record.user?.id && (
+            <div className="mt-4 flex">
               <button
                 type="button"
                 className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-600"
@@ -79,8 +81,6 @@ export const RecordDetails = () => {
                 Delete Record
               </button>
             </div>
-          ) : (
-            <></>
           )}
         </div>
       </div>
