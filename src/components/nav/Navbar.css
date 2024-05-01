@@ -1,25 +1,7 @@
-/* .navbar-brand {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.btn-logout {
-  background-color: gray;
-  border: none;
-  color: white;
-  font-size: 1.25rem;
-  border-radius: 0.25rem;
-  padding: 0.25rem 1rem;
-} */
-/* Define custom styles in your Navbar.css file */
-
-/* Darker background color for the dropdown menu */
 .custom-dropdown-menu {
   background-color: #343a40;
 }
 
-/* Lighten background color on hover */
 .custom-dropdown-menu .dropdown-item:hover {
   background-color: #495057;
 }

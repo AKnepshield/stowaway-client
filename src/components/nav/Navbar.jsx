@@ -3,7 +3,6 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   NavLink,
@@ -24,17 +23,20 @@ export const NavBar = () => {
   return (
     <div>
       <Navbar color="dark" dark expand="md">
-        <NavbarBrand tag={RRNavLink} to="/" className="navbar-brand">
+        <NavLink
+          tag={RRNavLink}
+          to="/records"
+          className="navbar-brand"
+          style={{
+            fontSize: "1.5rem",
+            fontWeight: "bold",
+          }}
+        >
           Stowaway Records
-        </NavbarBrand>
+        </NavLink>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink tag={RRNavLink} to="/records">
-                Records
-              </NavLink>
-            </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 Options
