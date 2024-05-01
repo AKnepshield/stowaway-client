@@ -40,3 +40,25 @@
 .read-the-docs {
   color: #888;
 }
+
+.landing-page {
+  position: relative;
+}
+
+.background-image {
+  width: 100%;
+  max-height: 80vh; /* Adjust the maximum height as needed */
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+}
