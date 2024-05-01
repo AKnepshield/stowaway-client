@@ -20,12 +20,23 @@ export const RecordList = () => {
   return (
     <>
       <section>
-        <ul>
+        <ul style={{ listStyleType: "none", padding: 0 }}>
           {records.map((record) => (
-            <li key={record.id}>
-              <Link to={`/records/${record.id}`}>
-                {record.artist} - {record.album}
-              </Link>
+            <li key={record.id} style={{ marginBottom: "20px" }}>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <Link to={`/records/${record.id}`}>
+                  <img
+                    src={record.imageUrl}
+                    alt={`${record.artist} - ${record.album}`}
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      marginRight: "10px",
+                    }}
+                  />
+                  {record.artist} - {record.album}
+                </Link>
+              </div>
             </li>
           ))}
         </ul>
