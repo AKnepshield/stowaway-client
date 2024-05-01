@@ -25,7 +25,7 @@ export const RecordForm = () => {
       getRecord(id).then((record) => {
         delete record.user;
         delete record.id;
-        record.condition = record.condition.id;
+        record.condition = record.condition?.id;
         record.genres = record.genres.map((genre) => genre.id);
         setFormData(record);
       });
