@@ -41,7 +41,7 @@ export const NavBar = () => {
               <DropdownToggle nav caret>
                 Options
               </DropdownToggle>
-              <DropdownMenu className="custom-dropdown-menu" right>
+              <DropdownMenu className="custom-dropdown-menu" end>
                 <DropdownItem>
                   <NavLink tag={RRNavLink} to="/records/new">
                     New Record
