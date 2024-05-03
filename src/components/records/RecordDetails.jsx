@@ -26,31 +26,27 @@ export const RecordDetails = () => {
   };
 
   return (
-    <>
-      <div className="flex justify-center items-center">
-        <div className="w-2/5">
-          {record.imageUrl && (
-            <div className="flex justify-center">
-              <img
-                src={record.imageUrl}
-                alt={record.album}
-                style={{
-                  width: "200px",
-                  height: "200px",
-                  objectFit: "cover",
-                  borderRadius: "4px",
-                }}
-              />
-            </div>
-          )}
-        </div>
+    <div className="flex items-center">
+      <div className="w-1/2 mr-8">
+        {record.imageUrl && (
+          <div className="flex justify-center">
+            <img
+              src={record.imageUrl}
+              alt={record.album}
+              style={{
+                width: "200px",
+                height: "auto",
+                objectFit: "cover",
+                borderRadius: "4px",
+                border: "2px solid black", // Add black border
+              }}
+            />
+          </div>
+        )}
       </div>
-      <div className="w-3/5 ml-8 flex flex-col items-start">
-        {" "}
+      <div className="w-1/2 flex flex-col items-start">
         <h1>{record.artist}</h1>
-        <div>
-          <strong>Artist:</strong> {record.artist}
-        </div>
+
         <div>
           <strong>Album:</strong> {record.album}
         </div>
@@ -73,13 +69,37 @@ export const RecordDetails = () => {
           <div className="mt-4 flex">
             <button
               type="button"
-              className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-600"
+              style={{
+                backgroundColor: "#333",
+                color: "#fff",
+                border: "none",
+                padding: "10px 20px",
+                fontSize: "16px",
+                borderRadius: "5px",
+                cursor: "pointer",
+                transition: "background-color 0.3s, box-shadow 0.3s",
+                marginRight: "5px", // Add margin-right for spacing
+              }}
             >
-              <Link to={`/records/${record.id}/edit`}>Edit Record</Link>
+              <Link
+                to={`/records/${record.id}/edit`}
+                style={{ textDecoration: "none", color: "#fff" }}
+              >
+                Edit Record
+              </Link>
             </button>
             <button
               type="button"
-              className="bg-purple-500 text-yellow-500 px-4 py-2 rounded shadow-md"
+              style={{
+                backgroundColor: "#333",
+                color: "#fff",
+                border: "none",
+                padding: "10px 20px",
+                fontSize: "16px",
+                borderRadius: "5px",
+                cursor: "pointer",
+                transition: "background-color 0.3s, box-shadow 0.3s",
+              }}
               onClick={handleDelete}
             >
               Delete Record
@@ -87,6 +107,6 @@ export const RecordDetails = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };

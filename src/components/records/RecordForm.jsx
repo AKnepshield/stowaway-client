@@ -26,14 +26,16 @@ export const RecordForm = () => {
       getRecord(id).then((record) => {
         delete record.user;
         delete record.id;
-        record.condition = record.condition.id;
+        record.condition = record.condition?.id;
         record.genres = record.genres.map((genre) => genre.id);
+        console.log(formData, "Effect");
         setFormData(record);
       });
     }
   }, [id]);
 
   const handleChange = (e) => {
+    console.log(formData);
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -109,17 +111,6 @@ export const RecordForm = () => {
       <ConditionDropdown formData={formData} setFormData={setFormData} />
       <GenreChecklist formData={formData} setFormData={setFormData} />
       <RecordImageUpload formData={formData} setFormData={setFormData} />
-
-      {/* <div>
-        <label htmlFor="image_url">Image URL:</label>
-        <input
-          type="text"
-          id="image_url"
-          name="imageUrl"
-          value={formData.imageUrl}
-          onChange={handleChange}
-        />
-      </div> */}
       <button type="button" onClick={handleSubmit}>
         Save Record
       </button>
