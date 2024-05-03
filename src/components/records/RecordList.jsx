@@ -1,21 +1,52 @@
 import { useEffect, useState } from "react";
-import { getRecords, getRecordsByUserId } from "../services/recordService.jsx";
+import {
+  getRecords,
+  getRecordsByUserId,
+  likeRecord,
+} from "../services/recordService.jsx";
 import { Link, useLocation } from "react-router-dom";
 import { getCurrentUser } from "../services/userService.jsx";
 
 export const RecordList = () => {
   const [records, setRecords] = useState([]);
+  const [likes, setLikes] = useState({});
   const location = useLocation();
 
   useEffect(() => {
-    getCurrentUser().then((user) => {
-      if (location.pathname === "/my-records") {
-        getRecordsByUserId(user.id).then(setRecords);
-      } else {
-        getRecords().then(setRecords);
-      }
-    });
-  }, []);
+    getCurrentUser()
+      .then((user) => {
+        if (location.pathname === "/my-records") {
+          getRecordsByUserId(user.id)
+            .then((records) => {
+              setRecords(records);
+              const likesData = {};
+              records.forEach((record) => {
+                likesData[record.id] = record.likes.length;
+              });
+              setLikes(likesData);
+            })
+            .catch((error) => {
+              console.error("Error fetching records:", error);
+            });
+        } else {
+          getRecords()
+            .then((records) => {
+              setRecords(records);
+              const likesData = {};
+              records.forEach((record) => {
+                likesData[record.id] = record.likes.length;
+              });
+              setLikes(likesData);
+            })
+            .catch((error) => {
+              console.error("Error fetching records:", error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error("Error getting current user:", error);
+      });
+  }, [location.pathname]);
 
   return (
     <>
@@ -36,6 +67,7 @@ export const RecordList = () => {
                   />
                   {record.artist} - {record.album}
                 </Link>
+                <button onClick={() => handleLike(record.id)}>👍 Like</button>
               </div>
             </li>
           ))}

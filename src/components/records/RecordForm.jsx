@@ -35,7 +35,6 @@ export const RecordForm = () => {
   }, [id]);
 
   const handleChange = (e) => {
-    console.log(formData);
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -44,7 +43,6 @@ export const RecordForm = () => {
 
   const handleSubmit = () => {
     if (id) {
-      console.log(formData, "Submit");
       updateRecord(id, formData).then(() => {
         navigate(`/records/${id}`);
       });
