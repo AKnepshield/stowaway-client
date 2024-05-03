@@ -6,6 +6,7 @@ import App from "../App.jsx";
 import { RecordList } from "./records/RecordList.jsx";
 import { RecordDetails } from "./records/RecordDetails.jsx";
 import { RecordForm } from "./records/RecordForm.jsx";
+import { RecordImageUpload } from "./records/RecordImageUpload.jsx";
 
 export const ApplicationViews = () => {
   return (
@@ -22,6 +23,7 @@ export const ApplicationViews = () => {
             <Route path=":id/edit" element={<RecordForm />} />
           </Route>
           <Route path="/my-records" element={<RecordList />} />
+          <Route path="upload" element={<RecordImageUpload />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -5,7 +5,6 @@ export const ConditionDropdown = ({ formData, setFormData }) => {
   const [conditions, setConditions] = useState([]);
 
   useEffect(() => {
-    console.log(formData);
     getConditions().then(setConditions);
   }, [formData]);
 

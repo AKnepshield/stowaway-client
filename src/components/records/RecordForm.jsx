@@ -7,6 +7,7 @@ import {
 } from "../services/recordService.jsx";
 import { ConditionDropdown } from "../condition/ConditionDropdown.jsx";
 import { GenreChecklist } from "../genre/GenreChecklist.jsx";
+import { RecordImageUpload } from "./RecordImageUpload.jsx";
 
 export const RecordForm = () => {
   const [formData, setFormData] = useState({
@@ -41,6 +42,7 @@ export const RecordForm = () => {
 
   const handleSubmit = () => {
     if (id) {
+      console.log(formData, "Submit");
       updateRecord(id, formData).then(() => {
         navigate(`/records/${id}`);
       });
@@ -106,7 +108,9 @@ export const RecordForm = () => {
 
       <ConditionDropdown formData={formData} setFormData={setFormData} />
       <GenreChecklist formData={formData} setFormData={setFormData} />
-      <div>
+      <RecordImageUpload formData={formData} setFormData={setFormData} />
+
+      {/* <div>
         <label htmlFor="image_url">Image URL:</label>
         <input
           type="text"
@@ -115,7 +119,7 @@ export const RecordForm = () => {
           value={formData.imageUrl}
           onChange={handleChange}
         />
-      </div>
+      </div> */}
       <button type="button" onClick={handleSubmit}>
         Save Record
       </button>
