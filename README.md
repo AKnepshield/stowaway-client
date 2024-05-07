@@ -1,8 +1,10 @@
-# React + Vite
+# Stowaway Records
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
 
-Currently, two official plugins are available:
+Stowaway Records is a platform for vinyl enthusiasts to share their record collections. Users upload photos accompanied by detailed information such as artist, album, year, and genre info, creating a vibrant showcase of musical diversity.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+- Feature 1: Allows users to create a profile for a record in their collection with artist, album name, year released, condition of record and genre or genres it is included in
+- Feature 2: Allows users to upload a photo of themselves with their record or just the record itself
