@@ -42,14 +42,20 @@ export const RecordForm = () => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     if (!formData.artist || !formData.album || !formData.yearReleased) {
-      console.log(formData, "Submit");
       alert("All fields must be filled out before saving.");
       return;
     }
+
+    if (!formData.condition) {
+      alert("Please select a condition");
+      return;
+    }
+
     if (id) {
-      console.log(formData, "Submit");
       updateRecord(id, formData).then(() => {
         navigate(`/records/${id}`);
       });

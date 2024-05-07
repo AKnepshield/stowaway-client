@@ -9,6 +9,13 @@ export const ConditionDropdown = ({ formData, setFormData }) => {
   }, [formData]);
 
   const handleConditionChange = (e) => {
+    const selectedValue = e.target.value;
+
+    if (!selectedValue) {
+      alert("Please select a condition");
+      return;
+    }
+
     setFormData({
       ...formData,
       condition: parseInt(e.target.value),

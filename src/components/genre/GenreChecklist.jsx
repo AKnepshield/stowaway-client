@@ -15,6 +15,14 @@ export const GenreChecklist = ({ formData, setFormData }) => {
         ...formData,
         genres: formData.genres.filter((id) => id !== genreId),
       });
+    }
+    if (!formData.yearReleased) {
+      alert("Please select a year released.");
+      return;
+    }
+    if (!formData.condition) {
+      alert("Please select a condition.");
+      return;
     } else {
       setFormData({
         ...formData,
