@@ -78,7 +78,7 @@ export const RecordDetails = () => {
                 borderRadius: "5px",
                 cursor: "pointer",
                 transition: "background-color 0.3s, box-shadow 0.3s",
-                marginRight: "5px", // Add margin-right for spacing
+                marginRight: "5px",
               }}
             >
               <Link
