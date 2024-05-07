@@ -43,6 +43,11 @@ export const RecordForm = () => {
   };
 
   const handleSubmit = () => {
+    if (!formData.artist || !formData.album || !formData.yearReleased) {
+      console.log(formData, "Submit");
+      alert("All fields must be filled out before saving.");
+      return;
+    }
     if (id) {
       console.log(formData, "Submit");
       updateRecord(id, formData).then(() => {
