@@ -75,8 +75,15 @@ export const RecordForm = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div
+      style={{
+        backgroundColor: "#1a1a1a",
+        padding: "20px",
+        borderRadius: "10px",
+        color: "#ffffff",
+      }}
+    >
+      <div style={{ marginBottom: "15px" }}>
         <label htmlFor="artist">Artist:</label>
         <input
           type="text"
@@ -84,9 +91,18 @@ export const RecordForm = () => {
           name="artist"
           value={formData.artist}
           onChange={handleChange}
+          style={{
+            display: "block",
+            width: "100%",
+            padding: "8px",
+            borderRadius: "5px",
+            border: "none",
+            backgroundColor: "#333333",
+            color: "#ffffff",
+          }}
         />
       </div>
-      <div>
+      <div style={{ marginBottom: "15px" }}>
         <label htmlFor="album">Album:</label>
         <input
           type="text"
@@ -94,15 +110,33 @@ export const RecordForm = () => {
           name="album"
           value={formData.album}
           onChange={handleChange}
+          style={{
+            display: "block",
+            width: "100%",
+            padding: "8px",
+            borderRadius: "5px",
+            border: "none",
+            backgroundColor: "#333333",
+            color: "#ffffff",
+          }}
         />
       </div>
-      <div>
+      <div style={{ marginBottom: "15px" }}>
         <label htmlFor="year_released">Year Released:</label>
         <select
           id="year_released"
           name="yearReleased"
           value={formData.yearReleased}
           onChange={handleChange}
+          style={{
+            display: "block",
+            width: "100%",
+            padding: "8px",
+            borderRadius: "5px",
+            border: "none",
+            backgroundColor: "#333333",
+            color: "#ffffff",
+          }}
         >
           <option value="">Select year</option>
           {Array.from(
@@ -122,7 +156,19 @@ export const RecordForm = () => {
       <ConditionDropdown formData={formData} setFormData={setFormData} />
       <GenreChecklist formData={formData} setFormData={setFormData} />
       <RecordImageUpload formData={formData} setFormData={setFormData} />
-      <button type="button" onClick={handleSubmit}>
+      <button
+        type="button"
+        onClick={handleSubmit}
+        style={{
+          width: "100%",
+          padding: "12px",
+          backgroundColor: "#333333",
+          color: "#ffffff",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+      >
         Save Record
       </button>
     </div>
