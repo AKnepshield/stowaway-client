@@ -7,7 +7,7 @@ import { RecordList } from "./records/RecordList.jsx";
 import { RecordDetails } from "./records/RecordDetails.jsx";
 import { RecordForm } from "./records/RecordForm.jsx";
 import { RecordImageUpload } from "./records/RecordImageUpload.jsx";
-
+import { HomePage } from "./home-page/HomePage";
 export const ApplicationViews = () => {
   return (
     <BrowserRouter>
@@ -15,7 +15,7 @@ export const ApplicationViews = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route element={<Authorized />}>
-          <Route path="/" element={<App />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/records">
             <Route index element={<RecordList />} />
             <Route path=":id" element={<RecordDetails />} />
