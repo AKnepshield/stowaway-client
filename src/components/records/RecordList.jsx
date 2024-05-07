@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react";
-import {
-  getRecords,
-  getRecordsByUserId,
-  likeRecord,
-} from "../services/recordService.jsx";
+import React, { useEffect, useState } from "react";
+import { getRecords, getRecordsByUserId } from "../services/recordService.jsx";
 import { Link, useLocation } from "react-router-dom";
 import { getCurrentUser } from "../services/userService.jsx";
+import { likeRecord } from "../services/likeService.jsx";
 
 export const RecordList = () => {
   const [records, setRecords] = useState([]);
@@ -19,11 +16,6 @@ export const RecordList = () => {
           getRecordsByUserId(user.id)
             .then((records) => {
               setRecords(records);
-              const likesData = {};
-              records.forEach((record) => {
-                likesData[record.id] = record.likes.length;
-              });
-              setLikes(likesData);
             })
             .catch((error) => {
               console.error("Error fetching records:", error);
@@ -32,11 +24,6 @@ export const RecordList = () => {
           getRecords()
             .then((records) => {
               setRecords(records);
-              const likesData = {};
-              records.forEach((record) => {
-                likesData[record.id] = record.likes.length;
-              });
-              setLikes(likesData);
             })
             .catch((error) => {
               console.error("Error fetching records:", error);
@@ -47,6 +34,16 @@ export const RecordList = () => {
         console.error("Error getting current user:", error);
       });
   }, [location.pathname]);
+
+  const handleLike = (recordId) => {
+    likeRecord(recordId)
+      .then(() => {
+        console.log("Record liked successfully");
+      })
+      .catch((error) => {
+        console.error("Error liking record:", error);
+      });
+  };
 
   return (
     <>
