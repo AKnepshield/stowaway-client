@@ -19,12 +19,24 @@ export const RecordList = () => {
 
   return (
     <>
-      <section>
+      <section
+        style={{
+          backgroundColor: "#1a1a1a",
+          padding: "20px",
+          borderRadius: "10px",
+        }}
+      >
         <ul style={{ listStyleType: "none", padding: 0 }}>
           {records.map((record) => (
-            <li key={record.id} style={{ marginBottom: "20px" }}>
+            <li
+              key={record.id}
+              style={{ marginBottom: "20px", color: "#ffffff" }}
+            >
               <div style={{ display: "flex", alignItems: "center" }}>
-                <Link to={`/records/${record.id}`}>
+                <Link
+                  to={`/records/${record.id}`}
+                  style={{ textDecoration: "none", color: "#ffffff" }}
+                >
                   <img
                     src={record.imageUrl}
                     alt={`${record.artist} - ${record.album}`}
@@ -32,9 +44,12 @@ export const RecordList = () => {
                       width: "50px",
                       height: "50px",
                       marginRight: "10px",
+                      borderRadius: "50%",
                     }}
                   />
-                  {record.artist} - {record.album}
+                  <span>
+                    {record.artist} - {record.album}
+                  </span>
                 </Link>
               </div>
             </li>
