@@ -2,11 +2,17 @@ import { useEffect, useState } from "react";
 import { getRecords, getRecordsByUserId } from "../services/recordService.jsx";
 import { Link, useLocation } from "react-router-dom";
 import { getCurrentUser } from "../services/userService.jsx";
-import { likeRecord } from "../services/likeService.jsx";
+import { likeRecord } from "../services/recordService.jsx";
 
 export const Record = ({ record, handleLike, currentUser }) => {
   // const isCurrentUserRecord = record.userId === currentUser.id;
   const [liked, setLiked] = useState(record.liked);
+
+  // useEffect(() => {
+  //   likeRecord().then((data) => {
+  //     console.log(data);
+  //   });
+  // }, []);
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
@@ -67,6 +73,16 @@ export const RecordList = () => {
     }
   }, [currentUser, location.pathname]);
 
+  const handleLike = async (recordId) => {
+    try {
+      likeRecord(recordId).then((data) => {
+        console.log(data);
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   // useEffect(() => {
   //   getCurrentUser().then((user) => {
   //     if (location.pathname === "/my-records") {
@@ -76,22 +92,6 @@ export const RecordList = () => {
   //     }
   //   });
   // }, []);
-
-  const handleLike = async (recordId, liked) => {
-    try {
-      const record = records.find((r) => r.id === recordId);
-      if (record && record.userId !== currentUser.id) {
-        const response = await likeRecord(recordId);
-        console.log(response);
-        const updatedRecords = records.map((r) =>
-          r.id === recordId ? { ...r, liked } : r
-        );
-        setRecords(updatedRecords);
-      }
-    } catch (error) {
-      console.error("Error liking record:", error);
-    }
-  };
 
   // const handleLike = (recordId, liked) => {
   //   const updatedRecords = records.map((record) => {

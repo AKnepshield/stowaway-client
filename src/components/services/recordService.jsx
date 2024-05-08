@@ -86,3 +86,16 @@ export const getRecordsByUserId = (id) => {
     return res.json();
   });
 };
+
+export const likeRecord = (id) => {
+  return fetch(`http://localhost:8000/records/${id}/like`, {
+    method: "POST",
+    headers: {
+      Authorization: `Token ${
+        JSON.parse(localStorage.getItem("user_token")).token
+      }`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(id),
+  });
+};
