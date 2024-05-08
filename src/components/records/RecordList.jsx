@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { getRecords, getRecordsByUserId } from "../services/recordService.jsx";
 import { Link, useLocation } from "react-router-dom";
 import { getCurrentUser } from "../services/userService.jsx";
+import { likeRecord } from "../services/likeService.jsx";
 
-export const Record = ({ record }) => {
-  const [like, setLike] = useState(false);
+export const Record = ({ record, handleLike, currentUser }) => {
+  // const isCurrentUserRecord = record.userId === currentUser.id;
+  const [liked, setLiked] = useState(record.liked);
+
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <Link
@@ -25,30 +28,82 @@ export const Record = ({ record }) => {
           {record.artist} - {record.album}
         </span>
       </Link>
-      <button
-        className="text-white bg-transparent outline-none"
-        onClick={() => setLike(!like)}
-      >
-        {like ? "❤️" : "♡"}
-      </button>
+      {record.userId === currentUser.id ? (
+        <span>
+          {record.artist} - {record.album}
+        </span>
+      ) : (
+        <button
+          className="text-white bg-transparent outline-none"
+          onClick={() => handleLike(record.id, !liked)}
+        >
+          {liked ? "❤️" : "♡"}
+        </button>
+      )}
     </div>
   );
 };
 
 export const RecordList = () => {
   const [records, setRecords] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
   const location = useLocation();
 
   useEffect(() => {
-    getCurrentUser().then((user) => {
-      if (location.pathname === "/my-records") {
-        getRecordsByUserId(user.id).then(setRecords);
-      } else {
-        getRecords().then(setRecords);
-      }
+    getCurrentUser().then((data) => {
+      setCurrentUser(data);
     });
   }, []);
 
+  useEffect(() => {
+    if (location.pathname === "/my-records") {
+      getRecordsByUserId(currentUser.id).then((data) => {
+        setRecords(data);
+      });
+    } else {
+      getRecords().then((data) => {
+        setRecords(data);
+      });
+    }
+  }, [currentUser, location.pathname]);
+
+  // useEffect(() => {
+  //   getCurrentUser().then((user) => {
+  //     if (location.pathname === "/my-records") {
+  //       getRecordsByUserId(user.id).then(setRecords);
+  //     } else {
+  //       getRecords().then(setRecords);
+  //     }
+  //   });
+  // }, []);
+
+  const handleLike = async (recordId, liked) => {
+    try {
+      const record = records.find((r) => r.id === recordId);
+      if (record && record.userId !== currentUser.id) {
+        const response = await likeRecord(recordId);
+        console.log(response);
+        const updatedRecords = records.map((r) =>
+          r.id === recordId ? { ...r, liked } : r
+        );
+        setRecords(updatedRecords);
+      }
+    } catch (error) {
+      console.error("Error liking record:", error);
+    }
+  };
+
+  // const handleLike = (recordId, liked) => {
+  //   const updatedRecords = records.map((record) => {
+  //     if (record.id === recordId) {
+  //       if (record.userId !== currentUser.id) {
+  //         return { ...record, liked };
+  //       }
+  //     }
+  //     return record;
+  //   });
+  //   setRecords(updatedRecords);
+  // };
   return (
     <>
       <section
@@ -64,7 +119,12 @@ export const RecordList = () => {
               key={record.id}
               style={{ marginBottom: "20px", color: "#ffffff" }}
             >
-              <Record record={record} />
+              <Record
+                record={record}
+                handleLike={handleLike}
+                // liked={record.liked}
+                currentUser={currentUser}
+              />
             </li>
           ))}
         </ul>

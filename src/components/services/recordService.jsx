@@ -58,13 +58,31 @@ export const createRecord = (recordObj) => {
   });
 };
 
+// export const getRecordsByUserId = (id) => {
+//   return fetch(`http://localhost:8000/records?user_id=${id}`, {
+//     headers: {
+//       Authorization: `Token ${
+//         JSON.parse(localStorage.getItem("user_token")).token
+//       }`,
+//       "Content-Type": "application/json",
+//     },
+//   }).then((res) => res.json());
+// };
 export const getRecordsByUserId = (id) => {
+  const userToken = JSON.parse(localStorage.getItem("user_token"))?.token;
+  if (!userToken) {
+    return Promise.reject(new Error("User token not found"));
+  }
+
   return fetch(`http://localhost:8000/records?user_id=${id}`, {
     headers: {
-      Authorization: `Token ${
-        JSON.parse(localStorage.getItem("user_token")).token
-      }`,
+      Authorization: `Token ${userToken}`,
       "Content-Type": "application/json",
     },
-  }).then((res) => res.json());
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error("Failed to fetch records");
+    }
+    return res.json();
+  });
 };
