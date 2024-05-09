@@ -4,15 +4,19 @@ import { Link, useLocation } from "react-router-dom";
 import { getCurrentUser } from "../services/userService.jsx";
 import { likeRecord } from "../services/recordService.jsx";
 
-export const Record = ({ record, handleLike, currentUser }) => {
+export const Record = ({ record, currentUser }) => {
   // const isCurrentUserRecord = record.userId === currentUser.id;
-  const [liked, setLiked] = useState(record.liked);
+  const [liked, setLiked] = useState(record.userLiked);
 
-  // useEffect(() => {
-  //   likeRecord().then((data) => {
-  //     console.log(data);
-  //   });
-  // }, []);
+  const handleLike = async (recordId) => {
+    try {
+      likeRecord(recordId).then((data) => {
+        console.log(data);
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
@@ -73,16 +77,6 @@ export const RecordList = () => {
     }
   }, [currentUser, location.pathname]);
 
-  const handleLike = async (recordId) => {
-    try {
-      likeRecord(recordId).then((data) => {
-        console.log(data);
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   // useEffect(() => {
   //   getCurrentUser().then((user) => {
   //     if (location.pathname === "/my-records") {
@@ -121,7 +115,6 @@ export const RecordList = () => {
             >
               <Record
                 record={record}
-                handleLike={handleLike}
                 // liked={record.liked}
                 currentUser={currentUser}
               />
