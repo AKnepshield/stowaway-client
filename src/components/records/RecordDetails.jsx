@@ -38,7 +38,7 @@ export const RecordDetails = () => {
                 height: "auto",
                 objectFit: "cover",
                 borderRadius: "4px",
-                border: "2px solid black", // Add black border
+                border: "2px solid black",
               }}
             />
           </div>
