@@ -99,3 +99,15 @@ export const likeRecord = (id) => {
     body: JSON.stringify(id),
   });
 };
+
+export const deleteLike = (id) => {
+  return fetch(`http://localhost:8000/records/${id}/like`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Token ${
+        JSON.parse(localStorage.getItem("user_token")).token
+      }`,
+      "Content-Type": "application/json",
+    },
+  });
+};

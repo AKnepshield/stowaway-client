@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { getRecords, getRecordsByUserId } from "../services/recordService.jsx";
+import {
+  deleteLike,
+  getRecords,
+  getRecordsByUserId,
+} from "../services/recordService.jsx";
 import { Link, useLocation } from "react-router-dom";
 import { getCurrentUser } from "../services/userService.jsx";
 import { likeRecord } from "../services/recordService.jsx";
@@ -8,10 +12,15 @@ export const Record = ({ record, currentUser }) => {
   // const isCurrentUserRecord = record.userId === currentUser.id;
   const [liked, setLiked] = useState(record.userLiked);
 
-  const handleLike = async (recordId) => {
+  const handleLike = async (recordId, liked) => {
     try {
-      likeRecord(recordId).then((data) => {
-        console.log(data);
+      if (liked) {
+        return likeRecord(recordId).then(() => {
+          setLiked(liked);
+        });
+      }
+      deleteLike(recordId).then(() => {
+        setLiked(liked);
       });
     } catch (e) {
       console.log(e);
