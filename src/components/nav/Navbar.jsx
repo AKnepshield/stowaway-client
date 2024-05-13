@@ -12,7 +12,7 @@ import {
   DropdownItem,
 } from "reactstrap";
 import { NavLink as RRNavLink, useNavigate } from "react-router-dom";
-import "./Navbar.css"; // You can define custom styles in Navbar.css
+import "./Navbar.css";
 
 export const NavBar = () => {
   const navigate = useNavigate();

@@ -57,17 +57,6 @@ export const createRecord = (recordObj) => {
     body: JSON.stringify(recordObj),
   });
 };
-
-// export const getRecordsByUserId = (id) => {
-//   return fetch(`http://localhost:8000/records?user_id=${id}`, {
-//     headers: {
-//       Authorization: `Token ${
-//         JSON.parse(localStorage.getItem("user_token")).token
-//       }`,
-//       "Content-Type": "application/json",
-//     },
-//   }).then((res) => res.json());
-// };
 export const getRecordsByUserId = (id) => {
   const userToken = JSON.parse(localStorage.getItem("user_token"))?.token;
   if (!userToken) {

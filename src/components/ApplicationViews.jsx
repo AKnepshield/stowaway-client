@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Authorized } from "./Authorized";
 import { Login } from "./auth/Login.jsx";
 import { Register } from "./auth/Register.jsx";
-import App from "../App.jsx";
 import { RecordList } from "./records/RecordList.jsx";
 import { RecordDetails } from "./records/RecordDetails.jsx";
 import { RecordForm } from "./records/RecordForm.jsx";
