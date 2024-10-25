@@ -5,11 +5,17 @@ export const ConditionDropdown = ({ formData, setFormData }) => {
   const [conditions, setConditions] = useState([]);
 
   useEffect(() => {
-    console.log(formData);
     getConditions().then(setConditions);
   }, [formData]);
 
   const handleConditionChange = (e) => {
+    const selectedValue = e.target.value;
+
+    if (!selectedValue) {
+      alert("Please select a condition");
+      return;
+    }
+
     setFormData({
       ...formData,
       condition: parseInt(e.target.value),

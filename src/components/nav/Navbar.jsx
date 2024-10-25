@@ -1,39 +1,66 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
+import { NavLink as RRNavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 export const NavBar = () => {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+
   return (
-    <ul className="navbar pb-10">
-      {localStorage.getItem("user_token") !== null ? (
-        <>
-          <li className="navbar__item">
-            <NavLink
-              className="text-left underline text-blue-600 hover:text-purple-700"
-              to={"/records/new"}
-            >
-              New Record!
-            </NavLink>
-          </li>
-          <li className="navbar__item">
-            <NavLink
-              className="text-left underline text-blue-600 hover:text-purple-700"
-              to={"/records"}
-            >
-              Records
-            </NavLink>
-          </li>
-          <li className="navbar_item">
-            <NavLink
-              className="text-left underline text-blue-600 hover:text-purple-700"
-              to={"/my-records"}
-            >
-              My Records!
-            </NavLink>
-          </li>
-          <li className="navbar__item">
+    <div>
+      <Navbar color="dark" dark expand="md">
+        <NavLink
+          tag={RRNavLink}
+          to="/records"
+          className="navbar-brand"
+          style={{
+            fontSize: "1.5rem",
+            fontWeight: "bold",
+          }}
+        >
+          Stowaway Records
+        </NavLink>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Options
+              </DropdownToggle>
+              <DropdownMenu className="custom-dropdown-menu" end>
+                <DropdownItem>
+                  <NavLink tag={RRNavLink} to="/records/new">
+                    New Record
+                  </NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink tag={RRNavLink} to="/my-records">
+                    My Records
+                  </NavLink>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </Nav>
+        </Collapse>
+        <Nav className="ml-auto align-items-center justify-content-end" navbar>
+          {" "}
+          <NavItem>
             <button
-              className="underline text-blue-600 hover:text-purple-700"
+              className="btn-logout ml-auto"
               onClick={() => {
                 localStorage.removeItem("user_token");
                 navigate("/login");
@@ -41,28 +68,9 @@ export const NavBar = () => {
             >
               Logout
             </button>
-          </li>
-        </>
-      ) : (
-        <>
-          <li className="navbar__item">
-            <NavLink
-              className="text-left underline text-blue-600 hover:text-purple-700"
-              to={"/login"}
-            >
-              Login
-            </NavLink>
-          </li>
-          <li className="navbar__item">
-            <NavLink
-              className="text-left underline text-blue-600 hover:text-purple-700"
-              to={"/register"}
-            >
-              Register
-            </NavLink>
-          </li>
-        </>
-      )}
-    </ul>
+          </NavItem>
+        </Nav>
+      </Navbar>
+    </div>
   );
 };
