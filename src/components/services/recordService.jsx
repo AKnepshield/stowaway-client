@@ -57,14 +57,46 @@ export const createRecord = (recordObj) => {
     body: JSON.stringify(recordObj),
   });
 };
-
 export const getRecordsByUserId = (id) => {
+  const userToken = JSON.parse(localStorage.getItem("user_token"))?.token;
+  if (!userToken) {
+    return Promise.reject(new Error("User token not found"));
+  }
+
   return fetch(`http://localhost:8000/records?user_id=${id}`, {
+    headers: {
+      Authorization: `Token ${userToken}`,
+      "Content-Type": "application/json",
+    },
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error("Failed to fetch records");
+    }
+    return res.json();
+  });
+};
+
+export const likeRecord = (id) => {
+  return fetch(`http://localhost:8000/records/${id}/like`, {
+    method: "POST",
     headers: {
       Authorization: `Token ${
         JSON.parse(localStorage.getItem("user_token")).token
       }`,
       "Content-Type": "application/json",
     },
-  }).then((res) => res.json());
+    body: JSON.stringify(id),
+  });
+};
+
+export const deleteLike = (id) => {
+  return fetch(`http://localhost:8000/records/${id}/like`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Token ${
+        JSON.parse(localStorage.getItem("user_token")).token
+      }`,
+      "Content-Type": "application/json",
+    },
+  });
 };

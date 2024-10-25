@@ -40,4 +40,3 @@ export const RecordImageUpload = ({ formData, setFormData }) => {
     </div>
   );
 };
-

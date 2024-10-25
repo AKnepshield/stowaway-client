@@ -8,6 +8,7 @@ import {
 import { ConditionDropdown } from "../condition/ConditionDropdown.jsx";
 import { GenreChecklist } from "../genre/GenreChecklist.jsx";
 import { RecordImageUpload } from "./RecordImageUpload.jsx";
+import { YearReleasedRoller } from "../year-released/YearReleasedRoller.jsx";
 
 export const RecordForm = () => {
   const [formData, setFormData] = useState({
@@ -121,38 +122,7 @@ export const RecordForm = () => {
           }}
         />
       </div>
-      <div style={{ marginBottom: "15px" }}>
-        <label htmlFor="year_released">Year Released:</label>
-        <select
-          id="year_released"
-          name="yearReleased"
-          value={formData.yearReleased}
-          onChange={handleChange}
-          style={{
-            display: "block",
-            width: "100%",
-            padding: "8px",
-            borderRadius: "5px",
-            border: "none",
-            backgroundColor: "#333333",
-            color: "#ffffff",
-          }}
-        >
-          <option value="">Select year</option>
-          {Array.from(
-            { length: new Date().getFullYear() - 1899 },
-            (_, index) => {
-              const year = new Date().getFullYear() - index;
-              return (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              );
-            }
-          )}
-        </select>
-      </div>
-
+      <YearReleasedRoller formData={formData} setFormData={setFormData} />
       <ConditionDropdown formData={formData} setFormData={setFormData} />
       <GenreChecklist formData={formData} setFormData={setFormData} />
       <RecordImageUpload formData={formData} setFormData={setFormData} />
