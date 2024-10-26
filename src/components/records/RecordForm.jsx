@@ -8,7 +8,7 @@ import {
 import { ConditionDropdown } from "../condition/ConditionDropdown.jsx";
 import { GenreChecklist } from "../genre/GenreChecklist.jsx";
 import { RecordImageUpload } from "./RecordImageUpload.jsx";
-import { YearReleasedRoller } from "../year-released/YearReleasedRoller.jsx";
+import DateOptions from "../year-released/DateOptions.jsx";
 
 export const RecordForm = () => {
   const [formData, setFormData] = useState({
@@ -122,7 +122,7 @@ export const RecordForm = () => {
           }}
         />
       </div>
-      <YearReleasedRoller formData={formData} setFormData={setFormData} />
+      <DateOptions formData={formData} setFormData={setFormData} />
       <ConditionDropdown formData={formData} setFormData={setFormData} />
       <GenreChecklist formData={formData} setFormData={setFormData} />
       <RecordImageUpload formData={formData} setFormData={setFormData} />
