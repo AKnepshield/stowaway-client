@@ -9,13 +9,6 @@ export const GenreChecklist = ({ formData, setFormData }) => {
   }, [formData]);
 
   const handleGenreChange = (genreId) => {
-    const isSelected = formData.genres.includes(genreId);
-    if (isSelected) {
-      setFormData({
-        ...formData,
-        genres: formData.genres.filter((id) => id !== genreId),
-      });
-    }
     if (!formData.yearReleased) {
       alert("Please select a year released.");
       return;
@@ -23,12 +16,13 @@ export const GenreChecklist = ({ formData, setFormData }) => {
     if (!formData.condition) {
       alert("Please select a condition.");
       return;
-    } else {
-      setFormData({
-        ...formData,
-        genres: [...formData.genres, genreId],
-      });
-    }
+    } 
+    const isSelected = formData.genres.includes(genreId);
+    setFormData({
+      ...formData,
+      genres: isSelected ? formData.genres.filter((id) => id !== genreId) : [...formData.genres, genreId]
+    })
+    
   };
 
   return (
